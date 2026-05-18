@@ -13,6 +13,11 @@ const App = () => {
       name: newName
     }
 
+    if (persons.some(person => person.name === newName)) {
+      alert(`${newName} is already added to phonebook`)
+      return
+    }
+
     setPersons(persons.concat(phoneBookName))
     setNewName('')
   }
@@ -24,7 +29,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
+      <form onSubmit={addPerson}>
         <div>
           name: <input 
           value={newName}
@@ -33,7 +38,7 @@ const App = () => {
           <div>debug: {newName}</div>
         </div>
         <div>
-          <button onClick={addPerson}>add</button>
+          <button>add</button>
         </div>
       </form>
       <h2>Numbers</h2>
